@@ -4,6 +4,11 @@ import sys
 import dbus
 import traceback
 
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('GtkClutter', '1.0')
+gi.require_version('Champlain', '0.12')
+
 from gi.repository import Gtk
 from gi.repository import GtkClutter
 from gi.repository import GObject
