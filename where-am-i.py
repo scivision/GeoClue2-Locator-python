@@ -34,7 +34,7 @@ def get_object(bus, name, object_path):
         return bus.get_object(name, object_path)
     except dbus.DBusException:
         traceback.print_exc()
-        sys.exit(1)
+        raise
 
 def get_interface(proxy_object, interface_name):
     '''
@@ -45,7 +45,7 @@ def get_interface(proxy_object, interface_name):
         return dbus.Interface(proxy_object, interface_name)
     except dbus.DBusException:
         traceback.print_exc()
-        sys.exit(1)
+        raise
 
 def get_property(properties_interface, interface_name, property_name):
     '''
@@ -57,7 +57,7 @@ def get_property(properties_interface, interface_name, property_name):
         return properties_interface.Get(interface_name, property_name)
     except dbus.DBusException:
         traceback.print_exc()
-        sys.exit(1)
+        raise
 
 def set_property(properties_interface, interface_name, property_name, value):
     '''
@@ -69,7 +69,7 @@ def set_property(properties_interface, interface_name, property_name, value):
         return properties_interface.Set(interface_name, property_name, value)
     except dbus.DBusException:
         traceback.print_exc()
-        sys.exit(1)
+        raise
 
 def location_updated(old_path, new_path):
     '''
@@ -169,4 +169,6 @@ def main():
     print("If no location was printed, run geoclue as root in another terminal -")
     print("Path to the executable is in 'org.freedesktop.GeoClue2.service' file")
 
-main()
+
+if __name__ == '__main__':
+    main()
