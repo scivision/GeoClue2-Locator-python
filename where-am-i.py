@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import sys
 import dbus
 import traceback
 
